@@ -1,0 +1,41 @@
+package model;
+
+import java.io.Serializable;
+
+
+/**
+ * @author francoise.perrin
+ *
+ */
+public class Coord implements Serializable {
+	
+	public int x, y, z;
+	
+	/**
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
+	public Coord(int x, int y, int z) {
+		this.x = x; 
+		this.y = y;
+		this.z = z;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "[x=" + x + ", y=" + y + "]";
+	}
+	
+	/**
+	 * @param x
+	 * @param y
+	 * @return true si les coordonn�es sont valides (dans un plateau de 8*8)
+	 */
+	public static boolean coordonnees_valides(int x, int y){
+		return ( (x<=3) && (x>=0) && (y<=3) && (y>=0) );
+	}
+}
