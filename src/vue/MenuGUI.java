@@ -109,7 +109,7 @@ public class MenuGUI extends JPanel{
 		}
 		
 		if(boutonAide.getActionListeners().length == 0){
-			boutonAide.addActionListener(new Propos());
+			boutonAide.addActionListener(new Aide());
 		}
 		
 		//this.add(panel, BorderLayout.PAGE_END);

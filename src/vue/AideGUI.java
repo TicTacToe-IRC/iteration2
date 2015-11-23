@@ -44,75 +44,66 @@ public class AideGUI extends JPanel {
 	public void init(){
         this.background = ResourceLoader.getImage("background-stat.jpg");
         repaint();
-
+        JPanel texte = new JPanel();
+        //texte.setPreferredSize(new Dimension(300, 300));
+        texte.setOpaque(false);
+        
+		JPanel regles = new JPanel();
+		regles.setLayout(new GridBagLayout());
 		
-		JPanel jpStat = new JPanel();
-		jpStat.setLayout(new GridBagLayout());
-		jpStat.setOpaque(false);
 		
-		JScrollPane jsp = new JScrollPane(jpStat);
-		jsp.setOpaque(false);
-		jsp.getViewport().setOpaque(false);
-		//jpStat.setLayout(new BoxLayout(jpStat, BoxLayout.PAGE_AXIS));
 		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx=0;
 		c.gridy=0;
 		
-		JPanel jpStatJoueur;
+		 JScrollPane jsp = new JScrollPane(regles);
+			jsp.setOpaque(false);
+			jsp.getViewport().setOpaque(false);
 		
-		StatRecord stat = null;
-		try {
-			stat = StatRecord.getInstance();
-			for(String s : stat.getNomsJoueurs()){
-				TitledBorder border = new TitledBorder(s);
-				//border.setTitleFont( border.getTitleFont().deriveFont(Font.BOLD + Font.ITALIC) );
+	
+		  Font police = new Font("Tahoma", Font.BOLD, 23);
+		  Font police2 = new Font("Tahoma", Font.BOLD, 20);
 				
-				jpStatJoueur = new JPanel();
-				jpStatJoueur.setBorder(border);
-				jpStatJoueur.setLayout(new GridLayout(0,2));
-				
-					JLabel labelNbParties = new JLabel("Nombre de parties jouées: ");
-					JLabel labelNbPartiesG = new JLabel("Nombre de parties gagnées: ");
-					JLabel labelNbPartiesP = new JLabel("Nombre de parties perdues: ");
-					JLabel labelNbPartiesN = new JLabel("Nombre de parties nulles: ");
-					
-					JLabel valNbParties = new JLabel(""+stat.getNbPartiesJouees(s));
-					JLabel valNbPartiesG = new JLabel(""+stat.getNbPartiesGagnees(s));
-					JLabel valNbPartiesP = new JLabel(""+stat.getNbPartiesPerdues(s));
-					JLabel valNbPartiesN = new JLabel(""+stat.getNbPartiesNulles(s));
-					
-				jpStatJoueur.add(labelNbParties);
-				jpStatJoueur.add(valNbParties);
-				jpStatJoueur.add(labelNbPartiesG);
-				jpStatJoueur.add(valNbPartiesG);
-				jpStatJoueur.add(labelNbPartiesP);
-				jpStatJoueur.add(valNbPartiesP);
-				jpStatJoueur.add(labelNbPartiesN);
-				jpStatJoueur.add(valNbPartiesN);
-				
-				jpStat.add(jpStatJoueur,c);
+				JPanel title = new JPanel();
+				title.setLayout(new GridBagLayout());
+				JLabel titre = new JLabel("Tic Tac Toe 3D");
+				JLabel titre2 = new JLabel("Règles du Jeu");
+				titre.setFont(police);
+				titre2.setFont(police2);
+				title.add(titre, c);
 				c.gridy++;
-				JPanel esp = new JPanel();
-				esp.setOpaque(false);
-				jpStat.add(esp,c);
-				c.gridy++;
-			}
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-				
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+				title.add(titre2, c);
+				title.setOpaque(false);
 
+				
+				JLabel ligne1 = new JLabel("Le Tic Tac Toe 3D est un jeu reprenant le "
+						+ "principe du puissance 4, qui est d'aligner 4 pions horizontalement,"
+						);
+				JLabel ligne2 = new JLabel("verticalement ou en diagonale.");
+				JLabel ligne3 = new JLabel("");
+				JLabel ligne4 = new JLabel("Règle 3");
+
+				c.ipadx = 30;
+				
+				regles.add(title, c);
+				c.gridy++;
+				regles.add(ligne1, c);
+				c.gridy++;
+				regles.add(ligne2, c);
+				c.gridy++;
+				regles.add(ligne3, c);
+				c.gridy++;
+				regles.add(ligne4, c);
+				
+				
+				texte.add(regles, BorderLayout.NORTH);
+				
 	JButton retour = new JButton("Retour");
 			retour.setPreferredSize(new Dimension(100, 30));
 			retour.addActionListener(new Retour());
 			
 		this.setLayout(new BorderLayout());
-		this.add(jsp, BorderLayout.CENTER);
+		this.add(texte, BorderLayout.NORTH);
 		this.add(retour, BorderLayout.SOUTH);
 	}
 	
